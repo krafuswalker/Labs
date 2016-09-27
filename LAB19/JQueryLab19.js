@@ -1,30 +1,43 @@
-var cart1 = []; 
-var cart2 = [];
+var cartName = []; 
+var cartPrice = [];
 var name;
 var price;
+var i;
+
 $(document).ready(function() {
 	
- $(".add-button1").click(function(event) {
-	 cart1 = cart1 + 1;
-	 	
-	var name = " ";
+	 $(".add-button1").click(function(event) {
+		    var row = $(this).parent();
+			var price = row.children(".price").text();
+			var name = row.children(".name").text();
+			cartPrice.push(price);
+			cartName.push(name);
 	});
  
  $(".add-button2").click(function(event) {
-		var row = $(this).parent();
-		var price = row.children(".price");
-		cart.push(price);
-		console.log("the button:", this);
-		console.log("Array contents: ", cart[0]);
-		console.log("ROW VALUE IS: ", row);
+	 	var row = $(this).parent();
+		var price = row.children(".price").text();
+		var name = row.children(".name").text();
+		cartPrice.push(price);
+		cartName.push(name);
+		
 });
  $(".add-button3").click(function(event) {
-		var row = $(this).parent();
-		var price = row.children(".price");
-		cart.push(price);
-		console.log("the button:", this);
-		console.log("Array contents: ", cart[0]);
-		console.log("ROW VALUE IS: ", row);
+	 	var row = $(this).parent();
+		var price = row.children(".price").text();
+		var name = row.children(".name").text();
+		cartPrice.push(price);
+		cartName.push(name);
+		
+		
 });
-for (i in cart) {console.log("Array contents: ", cart[i]);}
-})
+ $("#finish").click(function(event) {
+	 for (var i = 0; i < cartName.length; i++){
+		console.log("Name: ", cartName[i]);
+		console.log("Price: ", cartPrice[i]);
+		
+	 }	
+	 });
+});
+
+		
