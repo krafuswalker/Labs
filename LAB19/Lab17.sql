@@ -2,16 +2,18 @@
 SELECT * FROM customers;
 --#2 Select Distinct Countries
 SELECT * FROM customers;
-
 select distinct country_region
 FROM customers;
+
 --#3 Get all the records from the Customers where the customer's lastname starts with "B"
-SELECT * FROM customers
+SELECT * FROM customers WHERE Last-Name LIKE 'B%'
+
 --#4 Get First 100 records of the orders table
 SELECT * FROM orders
 LIMIT 100;
 
 --#5 Get customers in a apecified zip code
+--#5 SELECT * FROM Customers where zip_postal-code IN ('1010, '3012, '12209', '05023')
 SELECT * FROM customers
 WHERE zip_postal_code ='1010'
 OR zip_postal_code = '3012';
@@ -19,6 +21,7 @@ OR zip_postal_code = '12209'
 OR zip_postal_code = '05023';
 
 --#6 Get all orders where the shipRegion is not equal to NULL
+-- <> also means not equal
 SELECT * FROM orders;
 WHERE ship_country-region IS NOT NULL;
 --#7 Get All the customers ordered by the Country then by the City
@@ -50,15 +53,16 @@ Select max(quantity), avg(quantity), min(quantity) from order_details
 Group by order_id;
 
 -->13 Find Customer ID that placed order
-SELECT o.id, o.ship_name, od.order_id 
-FROM orders o 
-LEFT JOIN order_details od ON o.id = od.id
+
 Select customer-id FROM northwind.orders WHERE id = 65;
 --->14 
+SELECT * FROM Orders INNER JOIN Customers ON Customer_ID = Customers.ID;
+SELECT * FROM Orders LEFT JOIN Customers ON Customer_ID = Customers.ID;
+SELECT * FROM Orders RIGHT JOIN Customers ON Customer_ID = Customers.ID;
+--> 15  NOT NULL
+SELECT first_name FROM northwind.employees WHERE notes IS NULL
 
---> 15NULL
-SELECT first-name FROM northwind.employees WHERE notes IS NOT NULL
 
-
--->16
-SELECT first-name FROM northwind.employees WHERE report_to = Andrew
+-->16   Employee firstname for all Employees who report to Francisco
+SELECT Ship_city FROM Orders o INNER JOIN Customers c ON o.customer_id = c.id
+WHERE first_name = "Francisco"
